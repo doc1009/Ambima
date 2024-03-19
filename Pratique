@@ -1,0 +1,80 @@
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.*;
+
+enum EventCategory {
+    FESTA, ESPORTIVO, SHOW
+}
+
+class User {
+    private String name;
+    private String email;
+    private String city;
+
+    public User(String name, String email, String city) {
+        this.name = name;
+        this.email = email;
+        this.city = city;
+    }
+
+    // Getters and setters
+}
+
+class Event {
+    private String name;
+    private String address;
+    private EventCategory category;
+    private LocalDateTime dateTime;
+    private String description;
+
+    public Event(String name, String address, EventCategory category, LocalDateTime dateTime, String description) {
+        this.name = name;
+        this.address = address;
+        this.category = category;
+        this.dateTime = dateTime;
+        this.description = description;
+    }
+
+    // Getters and setters
+}
+
+public class EventManagementSystem {
+    private List<User> users;
+    private List<Event> events;
+
+    public EventManagementSystem() {
+        this.users = new ArrayList<>();
+        this.events = new ArrayList<>();
+    }
+
+    // Métodos para cadastro, consulta e notificação de eventos
+}
+
+class EventScheduler {
+    public static List<Event> orderEventsByTime(List<Event> events) {
+        // Implementação para ordenar eventos por horário
+        return events;
+    }
+}
+
+class FileHandler {
+    private static final String FILENAME = "events.data";
+
+    public static void saveEvents(List<Event> events) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
+            oos.writeObject(events);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Event> loadEvents() {
+        List<Event> events = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME))) {
+            events = (List<Event>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return events;
+    }
+}
